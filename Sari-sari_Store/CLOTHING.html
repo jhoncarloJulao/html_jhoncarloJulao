@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RS Clothing</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: rgb(83, 61, 61);
+    }
+
+    header {
+      background-color: rgb(53, 28, 12);
+      color: rgb(255, 255, 255);
+      text-align: center;
+      padding: 1em;
+    }
+
+    nav {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    nav a {
+      display: inline-block;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: rgb(83, 45, 21);
+      background-color: rgb(255, 255, 255);
+      border-radius: 5px;
+      margin: 10px;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #ddd;
+    }
+
+    section {
+      text-align: center;
+    }
+
+    .clothing-item {
+      border: 5px solid #ddd;
+      background-color: #fff;
+      padding: 20px;
+      margin: 10px;
+      border-radius: 5px;
+      display: block;
+      text-align: center;
+    }
+
+    #scrollBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 9999;
+      border: 5px solid black;
+      outline: none;
+      background-color: rgb(83, 45, 21);
+      color: white;
+      cursor: pointer;
+      padding: 2px;
+      border-radius: 30%;
+    }
+
+    .container {
+      position: relative;
+      width: 1020px;
+      height: auto;
+      border: 4px solid rgb(0, 0, 0);
+      padding: 5px;
+      margin: 0 auto;
+      background-color: rgb(83, 45, 21);
+      display: block;
+      align-items: center;
+    }
+  
+    .back-button {
+      position: fixed;
+            top: 12px;
+            left: 8px;
+            z-index: 9999;  
+        }      
+        .btn:hover {
+            background-color: #62ac72; 
+            color: #000000; 
+            transform: scale(1.1);
+        }
+  </style>
+</head>
+<body>
+  
+  <div class="container">
+    <button class="btn btn-primary back-button" onclick="location.href='index.html'">Back</button>
+    <header>
+      <img src="HULAW.jpg" alt="HULAW" style="border-radius: 50%; height: 150px; width: 150px; border: 3px solid; border-color: black;">
+      <h1>HULAW CLOTHING</h1>
+      <p id="totalAmountDisplay"> DISCOUNT FOR:</p>
+      <form>
+        <label>
+          <input type="radio" name="discount" value="10" required> STUDENT 10%
+        </label><br>
+        <label>
+          <input type="radio" name="discount" value="20"> SENIOR 20%
+        </label><br>
+        <label>
+          <input type="radio" name="discount" value="30"> PWD 30%
+        </label><br><br>
+        <input type="button" value="Discount" onclick="calculateDiscount()">
+      </form>
+      <p id="finalAmount">Discount: ₱0.00</p>
+
+      <div class="category-buttons">
+        <a href="NEW PAGE.html"><button>GO TO STOCKS</button></a>
+      </div>
+    </header>
+
+
+    <nav>
+      <a href="#jeans">Jeans</a>
+      <a href="#t-shirt">T-Shirt</a>
+      <a href="#perfume">Perfume</a>
+      <a href="#sando">Sando</a>
+      <a href="#toys">Toys</a>
+    </nav>
+
+    <div class="clothing-item">
+      Total Price: ₱<span id="totalPrice">0</span>
+    </div>
+
+    <section>
+      <div id="jeans" class="clothing-item">
+        <h1>Jeans</h1>
+        <p>Pick what you like.</p>
+        <br>
+        <p><b>Straight Jeans Php. 100.00</b></p>
+        <p>Stock: <span id="stockProduct1">100</span></p>
+        <input type="checkbox" id="product1Checkbox" />
+        <input type="number" id="product1Quantity" value="0" min="0">
+        <button onclick="addToCart(1)">Add to Cart</button>
+        <br><br>
+        <img src="Jean1.jpg" alt="straight" style="border-radius: 50%; height: 250px; width: 250px; border: 1px solid; border-color: rgba(129, 85, 18, 0.897);">
+        <p><b>Skinny Jeans Php. 95.00</b></p>
+        <p>Stock: <span id="stockProduct2">100</span></p>
+        <input type="checkbox" id="product2Checkbox" />
+        <input type="number" id="product2Quantity" value="0" min="0">
+        <button onclick="addToCart(2)">Add to Cart</button>
+        <br><br>
+        <img src="Jean2.webp" alt="skinny" style="border-radius:  50%; height: 250px; width: 250px; border: 1px solid; border-color: rgba(129, 85, 18, 0.897);">
+        <p><b>Flared Jeans Php. 65.00</b></p>
+        <p>Stock: <span id="stockProduct3">100</span></p>
+        <input type="checkbox" id="product3Checkbox" />
+        <input type="number" id="product3Quantity" value="0" min="0">
+        <button onclick="addToCart(3)">Add to Cart</button>
+        <br><br>
+        <img src="Jean3.webp" alt="flared" style="border-radius:  50%; height: 250px; width: 250px; border: 1px solid; border-color:rgba(129, 85, 18, 0.897);">
+        <p><b>Loose Jeans Php. 65.00</b></p>
+        <p>Stock: <span id="stockProduct4">100</span></p>
+        <input type="checkbox" id="product4Checkbox" />
+        <input type="number" id="product4Quantity" value="0" min="0">
+        <button onclick="addToCart(4)">Add to Cart</button>
+        <br><br>
+        <img src="Jean4.webp" alt="loose" style="border-radius:  50%; height: 250px; width: 250px; border: 1px solid; border-color:rgba(129, 85, 18, 0.897);">
+        <br><br>
+        
+      </div>
+      </section>
+
+      <div id="t-shirt" class="clothing-item">
+        <h1>T-Shirt</h1>
+        <p>Pick what you like.</p>
+        <br>
+        <p><b>Polo Shirt Php. 80.00</b></p>
+        <p>Stock: <span id="stockProduct5">100</span></p>
+        <input type="checkbox" id="product5Checkbox" />
+        <input type="number" id="product5Quantity" value="0" min="0">
+        <button onclick="addToCart(5)">Add to Cart</button>
+        <br><br>
+        <img src="t-shirt1.webp" alt="polo-shirt" style="border-radius:  50%; height: 250px; width: 250px; border: 1px solid; border-color: rgba(129, 85, 18, 0.897);">
+        <p><b>V-Neck Shirt Php. 65.00</b></p>
+        <p>Stock: <span id="stockProduct6">100</span></p>
+        <input type="checkbox" id="product6Checkbox" />
+        <input type="number" id="product6Quantity" value="0" min="0">
+        <button onclick="addToCart(6)">Add to Cart</button>
+        <br><br>
+        <img src="t-shirt2.jpg" alt="VNeck" style="border-radius:  50%; height: 250px; width: 250px; border: 1px solid; border-color: rgba(129, 85, 18, 0.897);">
+        <p><b>Round Neck Shirt Php. 55.00</b></p>
+        <p>Stock: <span id="stockProduct7">100</span></p>
+        <input type="checkbox" id="product7Checkbox" />
+        <input type="number" id="product7Quantity" value="0" min="0">
+        <button onclick="addToCart(7)">Add to Cart</button>
+        <br><br>
+        <img src="t-shirt3.jpg" alt="RoundNeck" style="border-radius:  50%; height: 250px; width: 250px; border: 1px solid; border-color: rgba(129, 85, 18, 0.897);">
+        <p><b>Sleeveless Shirt Php. 55.00</b></p>
+        <p>Stock: <span id="stockProduct8">100</span></p>
+        <input type="checkbox" id="product8Checkbox" />
+        <input type="number" id="product8Quantity" value="0" min="0">
+        <button onclick="addToCart(8)">Add to Cart</button>
+        <br><br>
+        <img src="t-shirt4.jpg" alt="Sleeveless" style="border-radius:  50%; height: 250px; width: 250px; border: 1px solid; border-color: rgba(129, 85, 18, 0.897);">
+      </div>
+
+      <div id="perfume" class="clothing-item">
+        <h1>Perfume</h1>
+        <p>Pick what you like.</p>
+        <br>
+        <p><b>Perfume 1 Php. 120.00</b></p>
+        <p>Stock: <span id="stockProduct9">100</span></p>
+        <input type="checkbox" id="product9Checkbox" />
+        <input type="number" id="product9Quantity" value="0" min="0">
+        <button onclick="addToCart(9)">Add to Cart</button>
+        <br><br>
+        <img src="perfume1.jpg" alt="Perfume1" style="border-radius:  50%; height: 250px; width: 250px; border: 1px solid; border-color: rgba(129, 85, 18, 0.897);">
+        <p><b>Perfume 2 Php. 100.00</b></p>
+        <p>Stock: <span id="stockProduct10">100</span></p>
+        <input type="checkbox" id="product10Checkbox" />
+        <input type="number" id="product10Quantity" value="0" min="0">
+        <button onclick="addToCart(10)">Add to Cart</button>
+        <br><br>
+        <img src="perfume2.jpg" alt="Perfume2" style="border-radius:  50%; height: 250px; width: 250px; border: 1px solid; border-color: rgba(129, 85, 18, 0.897);">
+        <p><b>Perfume 3 Php. 150.00</b></p>
+        <p>Stock: <span id="stockProduct11">100</span></p>
+        <input type="checkbox" id="product11Checkbox" />
+        <input type="number" id="product11Quantity" value="0" min="0">
+        <button onclick="addToCart(11)">Add to Cart</button>
+        <br><br>
+        <img src="perfume3.jpg" alt="Perfume3" style="border-radius:  50%; height: 250px; width: 250px; border: 1px solid; border-color: rgba(129, 85, 18, 0.897);">
+        <p><b>Perfume 4 Php. 200.00</b></p>
+        <p>Stock: <span id="stockProduct12">100/span></p>
+        <input type="checkbox" id="product12Checkbox" />
+        <input type="number" id="product12Quantity" value="0" min="0">
+        <button onclick="addToCart(12)">Add to Cart</button>
+        <br><br>
+        <img src="perfume4.jpg" alt="Perfume4" style="border-radius:  50%; height: 250px; width: 250px; border: 1px solid; border-color: rgba(129, 85, 18, 0.897);">
+      </div>
+
+      <div id="sando" class="clothing-item">
+        <h1>Sando</h1>
+        <p>Pick what you like.</p>
+        <br>
+        <p><b>Black Sando Php. 55.00</b></p>
+        <p>Stock: <span id="stockProduct13">100</span></p>
+        <input type="checkbox" id="product13Checkbox" />
+        <input type="number" id="product13Quantity" value="0" min="0">
+        <button onclick="addToCart(13)">Add to Cart</button>
+        <br><br>
+        <img src="sando1.webp" alt="black" style="border-radius:  50%; height: 250px; width: 250px; border: 1px solid; border-color: rgba(129, 85, 18, 0.897);">
+        <p><b>White Sando Php. 55.00</b></p>
+        <p>Stock: <span id="stockProduct14">100</span></p>
+        <input type="checkbox" id="product14Checkbox" />
+        <input type="number" id="product14Quantity" value="0" min="0">
+        <button onclick="addToCart(14)">Add to Cart</button>
+        <br><br>
+        <img src="sando2.jpg" alt="white" style="border-radius:  50%; height: 250px; width: 250px; border: 1px solid; border-color: rgba(129, 85, 18, 0.897);">
+        <p><b>Yellow Sando Php. 55.00</b></p>
+        <p>Stock: <span id="stockProduct15">100</span></p>
+        <input type="checkbox" id="product15Checkbox" />
+        <input type="number" id="product15Quantity" value="0" min="0">
+        <button onclick="addToCart(15)">Add to Cart</button>
+        <br><br>
+        <img src="sando3.jpg" alt="yellow" style="border-radius:  50%; height: 250px; width: 250px; border: 1px solid; border-color: rgba(129, 85, 18, 0.897);">
+      </div>
+
+      <div id="toys" class="clothing-item">
+        <h1>Toys</h1>
+        <p>Pick what you like.</p>
+        <br>
+        <p><b>Toy 1 Php. 70.00</b></p>
+        <p>Stock: <span id="stockProduct16">100</span></p>
+        <input type="checkbox" id="product16Checkbox" />
+        <input type="number" id="product16Quantity" value="0" min="0">
+        <button onclick="addToCart(16)">Add to Cart</button>
+        <br><br>
+        <img src="toy1.jpg" alt="Toy1" style="border-radius:  50%; height: 250px; width: 250px; border: 1px solid; border-color: rgba(129, 85, 18, 0.897);">
+        <p><b>Toy 2 Php. 70.00</b></p>
+        <p>Stock: <span id="stockProduct17">100</span></p>
+        <input type="checkbox" id="product17Checkbox" />
+        <input type="number" id="product17Quantity" value="0" min="0">
+        <button onclick="addToCart(17)">Add to Cart</button>
+        <br><br>
+        <img src="toy2.jpg" alt="Toy2" style="border-radius:  50%; height: 250px; width: 250px; border: 1px solid; border-color: rgba(129, 85, 18, 0.897);">
+        <p><b>Toy 3 Php. 70.00</b></p>
+        <p>Stock: <span id="stockProduct18">100</span></p>
+        <input type="checkbox" id="product18Checkbox" />
+        <input type="number" id="product18Quantity" value="0" min="0">
+        <button onclick="addToCart(18)">Add to Cart</button>
+        <br><br>
+        <img src="toy3.jpg" alt="Toy3" style="border-radius:  50%; height: 250px; width: 250px; border: 1px solid; border-color: rgba(129, 85, 18, 0.897);">
+        <p><b>Toy 4 Php. 70.00</b></p>
+        <p>Stock: <span id="stockProduct19">100</span></p>
+        <input type="checkbox" id="product19Checkbox" />
+        <input type="number" id="product19Quantity" value="0" min="0">
+        <button onclick="addToCart(19)">Add to Cart</button>
+        <br><br>
+        <img src="toy4.jpg" alt="Toy4" style="border-radius:  50%; height: 250px; width: 250px; border: 1px solid; border-color: rgba(129, 85, 18, 0.897);">
+      </div>
+    </section>
+
+    <button onclick="topFunction()" id="scrollBtn" title="Go to top">UP</button>
+   
+  </div>
+
+  <script>
+    function addToCart(productId) {
+      var quantityInput = document.getElementById("product" + productId + "Quantity");
+      var quantity = parseInt(quantityInput.value);
+      var stockSpan = document.getElementById("stockProduct" + productId);
+      var stock = parseInt(stockSpan.textContent);
+
+      if (quantity > stock) {
+        alert("Not enough stock available!");
+        return;
+      }
+
+      var totalPriceSpan = document.getElementById("totalPrice");
+      var totalPrice = parseFloat(totalPriceSpan.textContent);
+
+      var price;
+      switch (productId) {
+        case 1:
+          price = 100.0;
+          break;
+        case 2:
+          price = 95.0;
+          break;
+        case 3:
+        case 4:
+          price = 65.0;
+          break;
+        case 5:
+          price = 80.0;
+          break;
+        case 6:
+          price = 65.0;
+          break;
+        case 7:
+        case 8:
+          price = 55.0;
+          break;
+        case 9:
+          price = 120.0;
+          break;
+        case 10:
+          price = 100.0;
+          break;
+        case 11:
+          price = 150.0;
+          break;
+        case 12:
+          price = 200.0;
+          break;
+        case 13:
+        case 14:
+        case 15:
+          price = 55.0;
+          break;
+        case 16:
+        case 17:
+        case 18:
+        case 19:
+          price = 70.0;
+          break;
+      }
+
+      var productTotalPrice = price * quantity;
+      totalPrice += productTotalPrice;
+      totalPriceSpan.textContent = totalPrice.toFixed(2);
+
+      var finalAmountSpan = document.getElementById("finalAmount");
+      var discountAmount = parseFloat(finalAmountSpan.textContent.split(" ")[1]);
+
+      finalAmountSpan.textContent = "Discount: ₱" + (totalPrice * (1 - discountAmount / 100)).toFixed(2);
+
+      stock -= quantity;
+      stockSpan.textContent = stock;
+
+      quantityInput.value = 0;
+    }
+
+    function calculateDiscount() {
+      var discountRadios = document.getElementsByName("discount");
+      var discountAmount = 0;
+
+      for (var i = 0; i < discountRadios.length; i++) {
+        if (discountRadios[i].checked) {
+          discountAmount = parseInt(discountRadios[i].value);
+          break;
+        }
+      }
+
+      var totalPriceSpan = document.getElementById("totalPrice");
+      var totalPrice = parseFloat(totalPriceSpan.textContent);
+
+      var finalAmountSpan = document.getElementById("finalAmount");
+      finalAmountSpan.textContent = "Discount: ₱" + (totalPrice * (1 - discountAmount / 100)).toFixed(2);
+    }
+
+ 
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("scrollBtn").style.display = "block";
+      } else {
+        document.getElementById("scrollBtn").style.display = "none";
+      }
+    }
+
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </script>
+</body>
+</html>
+
